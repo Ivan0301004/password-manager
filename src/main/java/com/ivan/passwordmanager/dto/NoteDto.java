@@ -1,4 +1,12 @@
 package com.ivan.passwordmanager.dto;
 
-public record NoteDto() {
+import lombok.Data;
+import org.mapstruct.Mapper;
+
+@Data
+public class NoteDto {
+
+    private Long id;
+
+    private String note;
 }

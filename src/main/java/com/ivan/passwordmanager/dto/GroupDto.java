@@ -1,4 +1,4 @@
 package com.ivan.passwordmanager.dto;
 
-public record GroupDto() {
+public class GroupDto {
 }

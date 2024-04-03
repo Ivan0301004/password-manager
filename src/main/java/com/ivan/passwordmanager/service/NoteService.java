@@ -9,9 +9,9 @@ public interface NoteService {
 
     List<NoteDto> getAllNotes();
 
-    Note createNote(Note note);
+    Note createNoteToSiteById(NoteDto noteDto, Long siteId);
 
-    void removeNoteById(Long id);
+    void removeNoteFromSiteById(Long noteId, Long siteId);
 
     Note updateNote(Long id, NoteDto noteDto);
 

@@ -1,10 +1,18 @@
 package com.ivan.passwordmanager.mappers;
 
+import com.ivan.passwordmanager.dto.NoteDto;
 import com.ivan.passwordmanager.model.Note;
 import org.mapstruct.Mapper;
+import org.springframework.data.domain.Page;
+
+import java.util.List;
 
 @Mapper(componentModel = "Spring")
-public interface NoteMapper{
+public interface NoteMapper {
 
+    NoteDto toDto(Note note);
 
+    Note toEntity(NoteDto noteDto);
+
+    List<NoteDto> toNotesDto(List<Note> notes);
 }

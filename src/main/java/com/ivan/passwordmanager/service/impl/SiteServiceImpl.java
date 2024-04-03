@@ -1,14 +1,10 @@
 package com.ivan.passwordmanager.service.impl;
 
 import com.ivan.passwordmanager.dto.SiteDto;
-import com.ivan.passwordmanager.dto.UserDto;
 import com.ivan.passwordmanager.exeptions.NotFound;
 import com.ivan.passwordmanager.mappers.SiteMapper;
-import com.ivan.passwordmanager.mappers.UserMapper;
-import com.ivan.passwordmanager.model.Category;
 import com.ivan.passwordmanager.model.Site;
 import com.ivan.passwordmanager.model.User;
-import com.ivan.passwordmanager.repository.CategoryRepository;
 import com.ivan.passwordmanager.repository.SiteRepository;
 import com.ivan.passwordmanager.repository.UserRepository;
 import com.ivan.passwordmanager.service.SiteService;
@@ -19,7 +15,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class SiteServiceImpl implements SiteService {
@@ -27,23 +22,18 @@ public class SiteServiceImpl implements SiteService {
     private final SiteRepository siteRepository;
     private final UserRepository userRepository;
     private final SiteMapper siteMapper;
-    private final UserMapper userMapper;
-    private final CategoryRepository categoryRepository;
 
-    public SiteServiceImpl(SiteRepository siteRepository, UserRepository userRepository, SiteMapper siteMapper,
-                           UserMapper userMapper,
-                           CategoryRepository categoryRepository) {
+    public SiteServiceImpl(SiteRepository siteRepository, UserRepository userRepository, SiteMapper siteMapper) {
         this.siteRepository = siteRepository;
         this.userRepository = userRepository;
         this.siteMapper = siteMapper;
-        this.userMapper = userMapper;
-        this.categoryRepository = categoryRepository;
     }
 
     @Override
     @Transactional
     public SiteDto createSiteToUserById(Site site, Long userId) {
-        User userToAddSite = this.userRepository.findById(userId).get();
+        User userToAddSite = this.userRepository.findById(userId)
+                .orElseThrow(() -> new NotFound("No user found", HttpStatus.NOT_FOUND));
 
         this.siteRepository.save(site);
         site.setUser(userToAddSite);
