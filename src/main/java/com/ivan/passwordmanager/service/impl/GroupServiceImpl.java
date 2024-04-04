@@ -3,9 +3,11 @@ package com.ivan.passwordmanager.service.impl;
 import com.ivan.passwordmanager.dto.GroupDto;
 import com.ivan.passwordmanager.model.Group;
 import com.ivan.passwordmanager.service.GroupService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class GroupServiceImpl implements GroupService {
     @Override
     public List<GroupDto> getAllGroups() {

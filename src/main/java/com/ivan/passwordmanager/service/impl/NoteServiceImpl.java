@@ -8,10 +8,13 @@ import com.ivan.passwordmanager.model.Site;
 import com.ivan.passwordmanager.repository.NoteRepository;
 import com.ivan.passwordmanager.repository.SiteRepository;
 import com.ivan.passwordmanager.service.NoteService;
+import jakarta.transaction.Transactional;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class NoteServiceImpl implements NoteService {
 
     private final NoteRepository noteRepository;
@@ -30,6 +33,7 @@ public class NoteServiceImpl implements NoteService {
     }
 
     @Override
+    @Transactional
     public Note createNoteToSiteById(NoteDto noteDto, Long siteId) {
         return this.siteRepository.findById(siteId)
                 .map(site -> {
@@ -57,6 +61,7 @@ public class NoteServiceImpl implements NoteService {
     }
 
     @Override
+    @Transactional
     public Note updateNote(Long id, NoteDto noteDto) {
         return this.noteRepository.findById(id)
                 .map(note -> {

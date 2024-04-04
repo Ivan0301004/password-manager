@@ -3,7 +3,6 @@ package com.ivan.passwordmanager.service.impl;
 import com.ivan.passwordmanager.dto.UserDto;
 import com.ivan.passwordmanager.exeptions.NotFound;
 import com.ivan.passwordmanager.mappers.UserMapper;
-import com.ivan.passwordmanager.model.BaseClass;
 import com.ivan.passwordmanager.model.User;
 import com.ivan.passwordmanager.repository.UserRepository;
 import com.ivan.passwordmanager.service.UserService;

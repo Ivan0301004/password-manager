@@ -65,6 +65,7 @@ public class SiteServiceImpl implements SiteService {
     }
 
     @Override
+    @Transactional
     public SiteDto updateSiteById(Long id, SiteDto siteDto) {
         Site siteToUpdate = this.siteRepository.findById(id)
                 .map(site -> {
