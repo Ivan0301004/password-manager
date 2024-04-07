@@ -13,6 +13,6 @@ public interface NoteService {
 
     void removeNoteFromSiteById(Long noteId, Long siteId);
 
-    Note updateNote(Long id, NoteDto noteDto);
+    NoteDto updateNote(Long id, NoteDto noteDto);
 
 }

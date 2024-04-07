@@ -9,9 +9,9 @@ public interface CategoryService {
 
     List<CategoryDto> getALlCategories();
 
-    Category createCategory(Category category);
+    CategoryDto createCategoryToSite(Category category, Long siteId);
 
-    void removeCategory(Long id);
+    void removeCategoryFromSite(Long id, Long siteId);
 
-    Category updateCategory(Long id, CategoryDto categoryDto);
+    Category updateCategory(Long siteId, CategoryDto categoryDto);
 }

@@ -22,8 +22,7 @@ public class Category {
 
     private String name;
 
-    @OneToMany(mappedBy = "category")
-    private List<Site> sites;
-
+    @OneToOne(mappedBy = "category")
+    private Site site;
 
 }

@@ -62,13 +62,14 @@ public class NoteServiceImpl implements NoteService {
 
     @Override
     @Transactional
-    public Note updateNote(Long id, NoteDto noteDto) {
-        return this.noteRepository.findById(id)
+    public NoteDto updateNote(Long id, NoteDto noteDto) {
+        Note noteToUpdate =  this.noteRepository.findById(id)
                 .map(note -> {
                     note.setNote(noteDto.getNote());
                     return this.noteRepository.save(note);
                 })
                 .orElseThrow(() -> new NotFound("Note was not found", HttpStatus.NOT_FOUND));
-    }
 
+        return this.noteMapper.toDto(noteToUpdate);
+    }
 }

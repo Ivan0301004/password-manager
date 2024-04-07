@@ -22,7 +22,11 @@ public class Group {
 
     private String name;
 
-    @OneToMany(mappedBy = "groups")
+    @OneToMany(mappedBy = "group")
     private List<Site> sitesList;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
 }

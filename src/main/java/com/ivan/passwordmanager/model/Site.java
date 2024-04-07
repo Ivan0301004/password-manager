@@ -29,15 +29,11 @@ public class Site extends BaseClass {
     @OneToMany(mappedBy = "site")
     private List<Note> notes;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
-    @ManyToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id")
     private Category category;
 
     @ManyToOne
     @JoinColumn(name = "group_id")
-    private Group groups;
+    private Group group;
 }

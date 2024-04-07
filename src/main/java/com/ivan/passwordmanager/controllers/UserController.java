@@ -6,9 +6,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 public class UserController {
@@ -22,6 +23,11 @@ public class UserController {
     @GetMapping("/users")
     public ResponseEntity<Page<UserDto>> getAllUsers(Pageable pageable) {
         return ResponseEntity.ok(this.userService.getAllUsers(pageable));
+    }
+
+    @DeleteMapping("users/{userId}")
+    public ResponseEntity<?> removeUserById(@PathVariable Long userId) {
+        return ResponseEntity.ok(this.userService.removeUserById(userId));
     }
 
 

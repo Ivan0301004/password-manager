@@ -1,4 +1,11 @@
 package com.ivan.passwordmanager.dto;
 
-public record CategoryDto() {
+import lombok.Data;
+import org.mapstruct.Mapper;
+
+@Data
+public class CategoryDto {
+
+    private Long id;
+    private String name;
 }

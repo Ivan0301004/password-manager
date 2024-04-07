@@ -3,8 +3,10 @@ package com.ivan.passwordmanager.service.impl;
 import com.ivan.passwordmanager.dto.SiteDto;
 import com.ivan.passwordmanager.exeptions.NotFound;
 import com.ivan.passwordmanager.mappers.SiteMapper;
+import com.ivan.passwordmanager.model.Group;
 import com.ivan.passwordmanager.model.Site;
 import com.ivan.passwordmanager.model.User;
+import com.ivan.passwordmanager.repository.GroupRepository;
 import com.ivan.passwordmanager.repository.SiteRepository;
 import com.ivan.passwordmanager.repository.UserRepository;
 import com.ivan.passwordmanager.service.SiteService;
@@ -20,25 +22,26 @@ import java.util.List;
 public class SiteServiceImpl implements SiteService {
 
     private final SiteRepository siteRepository;
-    private final UserRepository userRepository;
     private final SiteMapper siteMapper;
+    private final GroupRepository groupRepository;
 
-    public SiteServiceImpl(SiteRepository siteRepository, UserRepository userRepository, SiteMapper siteMapper) {
+    public SiteServiceImpl(SiteRepository siteRepository, SiteMapper siteMapper, GroupRepository groupRepository) {
         this.siteRepository = siteRepository;
-        this.userRepository = userRepository;
         this.siteMapper = siteMapper;
+        this.groupRepository = groupRepository;
     }
+
 
     @Override
     @Transactional
-    public SiteDto createSiteToUserById(Site site, Long userId) {
-        User userToAddSite = this.userRepository.findById(userId)
-                .orElseThrow(() -> new NotFound("No user found", HttpStatus.NOT_FOUND));
+    public SiteDto createSiteToGroupById(Site site, Long groupId) {
+        Group groupToAddSite = this.groupRepository.findById(groupId)
+                .orElseThrow(() -> new NotFound("No group found", HttpStatus.NOT_FOUND));
 
         this.siteRepository.save(site);
-        site.setUser(userToAddSite);
-        userToAddSite.getSitesList().add(site);
-        this.userRepository.save(userToAddSite);
+        site.setGroup(groupToAddSite);
+        groupToAddSite.getSitesList().add(site);
+        this.groupRepository.save(groupToAddSite);
 
         return this.siteMapper.toSiteDto(site);
     }
@@ -54,14 +57,20 @@ public class SiteServiceImpl implements SiteService {
     }
 
     @Override
-    public SiteDto removeSiteById(Long id) {
-        Site siteToRemove = this.siteRepository.findById(id)
-                .orElseThrow(() -> new NotFound("Site with id " + id + " was not found!", HttpStatus.NOT_FOUND));
+    public SiteDto removeSiteByIdFromGroup(Long siteId, Long groupId) {
+        Site siteToRemove = this.siteRepository.findById(siteId)
+                .orElseThrow(() -> new NotFound("Site with siteId " + siteId + " was not found!", HttpStatus.NOT_FOUND));
+        Group group = this.groupRepository.findById(groupId)
+                .orElseThrow(() -> new NotFound("User was not found", HttpStatus.NOT_FOUND));
 
-        SiteDto siteDto = this.siteMapper.toSiteDto(siteToRemove);
-        this.siteRepository.delete(siteToRemove);
+        if (group.getSitesList().contains(siteToRemove)) {
+            group.getSitesList().remove(siteToRemove);
+            siteToRemove.setGroup(null);
+            this.siteRepository.delete(siteToRemove);
+            this.groupRepository.save(group);
+        }
 
-        return siteDto;
+        return this.siteMapper.toSiteDto(siteToRemove);
     }
 
     @Override

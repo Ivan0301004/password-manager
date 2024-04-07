@@ -9,11 +9,11 @@ import java.util.List;
 
 public interface SiteService {
 
-    SiteDto createSiteToUserById(Site site, Long userId);
+    public SiteDto createSiteToGroupById(Site site, Long groupId);
 
     Page<SiteDto> getAllSites(Pageable pageable);
 
-    SiteDto removeSiteById(Long id);
+    SiteDto removeSiteByIdFromGroup(Long siteId, Long groupId);
 
     SiteDto updateSiteById(Long id, SiteDto siteDto);
 

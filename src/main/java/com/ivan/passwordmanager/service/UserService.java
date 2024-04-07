@@ -11,7 +11,7 @@ public interface UserService {
 
     Page<UserDto> getAllUsers(Pageable pageable);
 
-    void removeUserById(long id);
+    UserDto removeUserById(long id);
 
     User updateUserById(long id, UserDto userDto);
 

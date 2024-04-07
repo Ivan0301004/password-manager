@@ -36,13 +36,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void removeUserById(long id) {
+    public UserDto removeUserById(long id) {
         Optional<User> userToRemove = this.userRepository.findById(id);
-        userToRemove.ifPresentOrElse(this.userRepository::delete,
-                () -> {
+        userToRemove.ifPresentOrElse(this.userRepository::delete, () -> {
                     throw new NotFound("User with id " + id + " was not found", HttpStatus.NOT_FOUND);
                 }
         );
+
+        return this.userMapper.toUserDto(userToRemove.get());
     }
 
     @Override
