@@ -15,11 +15,16 @@ import java.time.LocalDateTime;
 @Data
 public abstract class BaseClass {
 
-    @CreatedDate
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false, updatable = false)
+    @CreatedDate
     private LocalDateTime createdAt;
 
     @LastModifiedDate
     private LocalDateTime lastModifiedBy;
 
+    @PrePersist
+    protected void prePersist(){
+        this.createdAt = LocalDateTime.now();
+    }
 }
