@@ -8,7 +8,6 @@ import org.springframework.data.domain.PageImpl;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
 @Mapper(componentModel = "spring")
 public interface UserMapper {
 

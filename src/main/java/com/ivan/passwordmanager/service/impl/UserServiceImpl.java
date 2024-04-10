@@ -10,8 +10,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ReflectionUtils;
 
+import java.lang.reflect.Field;
 import java.time.LocalDateTime;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -56,6 +60,21 @@ public class UserServiceImpl implements UserService {
                     return this.userRepository.save(user);
                 })
                 .orElseThrow(() -> new IllegalArgumentException("Please set some data"));
+    }
+
+    @Override
+    public User patchUserById(long userId, Map<String, Object> fields) {
+        User userToUpdate = this.userRepository.findById(userId)
+                .orElseThrow(() -> new NotFound("User doesn't exist", HttpStatus.NOT_FOUND));
+
+        fields.forEach((key, value) -> {
+            Field field = ReflectionUtils.findField(User.class, key);
+            field.setAccessible(true);
+            ReflectionUtils.setField(field, userToUpdate, value);
+        });
+
+        userToUpdate.setLastModifiedBy(LocalDateTime.now());
+        return this.userRepository.save(userToUpdate);
     }
 
     @Override

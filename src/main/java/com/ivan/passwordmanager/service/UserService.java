@@ -5,6 +5,7 @@ import com.ivan.passwordmanager.model.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.Map;
 import java.util.Optional;
 
 public interface UserService {
@@ -14,6 +15,8 @@ public interface UserService {
     UserDto removeUserById(long id);
 
     User updateUserById(long id, UserDto userDto);
+
+    User patchUserById(long userId, Map<String, Object> fields);
 
     User createUser(User user);
 
