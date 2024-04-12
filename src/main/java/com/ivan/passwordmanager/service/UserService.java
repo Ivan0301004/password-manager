@@ -24,6 +24,4 @@ public interface UserService {
 
     UserDto getUserByEmail(String email);
 
-
-
 }

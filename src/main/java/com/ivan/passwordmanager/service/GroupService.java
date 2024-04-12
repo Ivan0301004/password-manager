@@ -10,10 +10,11 @@ public interface GroupService {
 
     List<GroupDto> getAllGroups();
 
-    Group createNewGroupToUser(Group group, Long userId);
+    public GroupDto createNewGroupToUser(Group group, Long userId);
 
-    void removeGroupById(Long id, Long userId);
+    void removeGroupById(Long userId, Long id);
 
     Group updateGroup(Long id, Long userId, GroupDto groupDto);
+
 
 }

@@ -38,9 +38,9 @@ public class SiteServiceImpl implements SiteService {
         Group groupToAddSite = this.groupRepository.findById(groupId)
                 .orElseThrow(() -> new NotFound("No group found", HttpStatus.NOT_FOUND));
 
-        this.siteRepository.save(site);
         site.setGroup(groupToAddSite);
         groupToAddSite.getSitesList().add(site);
+        this.siteRepository.save(site);
         this.groupRepository.save(groupToAddSite);
 
         return this.siteMapper.toSiteDto(site);
