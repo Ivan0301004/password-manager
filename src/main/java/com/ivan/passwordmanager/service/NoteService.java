@@ -11,7 +11,7 @@ public interface NoteService {
 
     Note createNoteToSiteById(NoteDto noteDto, Long siteId);
 
-    void removeNoteFromSiteById(Long noteId, Long siteId);
+    NoteDto removeNoteFromSiteById(Long noteId, Long siteId);
 
     NoteDto updateNote(Long id, NoteDto noteDto);
 

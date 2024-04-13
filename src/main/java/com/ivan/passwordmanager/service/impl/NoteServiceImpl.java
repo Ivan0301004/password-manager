@@ -45,7 +45,7 @@ public class NoteServiceImpl implements NoteService {
     }
 
     @Override
-    public void removeNoteFromSiteById(Long noteId, Long siteId) {
+    public NoteDto removeNoteFromSiteById(Long noteId, Long siteId) {
         Note note = this.noteRepository.findById(noteId)
                 .orElseThrow(() -> new NotFound("Note was not found", HttpStatus.NOT_FOUND));
 
@@ -58,6 +58,8 @@ public class NoteServiceImpl implements NoteService {
             this.noteRepository.delete(note);
             this.siteRepository.save(site);
         }
+
+        return this.noteMapper.toDto(note);
     }
 
     @Override

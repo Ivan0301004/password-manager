@@ -1,5 +1,6 @@
 package com.ivan.passwordmanager.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,6 +23,7 @@ public class Note {
 
     @ManyToOne
     @JoinColumn(name = "site_id")
+    @JsonIgnore
     private Site site;
 
 }
