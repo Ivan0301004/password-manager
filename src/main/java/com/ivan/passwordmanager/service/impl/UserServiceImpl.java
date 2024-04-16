@@ -1,22 +1,22 @@
 package com.ivan.passwordmanager.service.impl;
 
-import com.ivan.passwordmanager.dto.UserDto;
-import com.ivan.passwordmanager.exeptions.NotFound;
-import com.ivan.passwordmanager.mappers.UserMapper;
-import com.ivan.passwordmanager.model.User;
-import com.ivan.passwordmanager.repository.UserRepository;
-import com.ivan.passwordmanager.service.UserService;
+import java.lang.reflect.Field;
+import java.time.LocalDateTime;
+import java.util.Map;
+import java.util.Optional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
 
-import java.lang.reflect.Field;
-import java.time.LocalDateTime;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
+import com.ivan.passwordmanager.dto.UserDto;
+import com.ivan.passwordmanager.exeptions.NotFound;
+import com.ivan.passwordmanager.mappers.UserMapper;
+import com.ivan.passwordmanager.model.User;
+import com.ivan.passwordmanager.repository.UserRepository;
+import com.ivan.passwordmanager.service.UserService;
 
 @Service
 public class UserServiceImpl implements UserService {

@@ -1,14 +1,13 @@
 package com.ivan.passwordmanager.controllers;
 
-import com.ivan.passwordmanager.dto.CategoryDto;
-import com.ivan.passwordmanager.model.Category;
-import com.ivan.passwordmanager.service.impl.CategoryServiceImpl;
-import org.springframework.http.HttpStatus;
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import com.ivan.passwordmanager.dto.CategoryDto;
+import com.ivan.passwordmanager.service.impl.CategoryServiceImpl;
 
 @RestController
 public class CategoryController {
@@ -25,4 +24,5 @@ public class CategoryController {
                 .ok()
                 .body(this.categoryService.getALlCategories());
     }
+
 }

@@ -15,7 +15,9 @@ public interface SiteService {
 
     SiteDto removeSiteByIdFromGroup(Long siteId, Long groupId);
 
-    SiteDto updateSiteById(Long id, SiteDto siteDto);
+    SiteDto updateSiteById(Long userId, Long id, SiteDto siteDto);
+
+    SiteDto patchSiteById(Long userId, Long id, SiteDto siteDto);
 
     List<SiteDto> getSitesByNameCategory(String category);
 

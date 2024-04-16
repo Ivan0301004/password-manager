@@ -1,13 +1,13 @@
 package com.ivan.passwordmanager.dto;
 
-import com.ivan.passwordmanager.model.Group;
-import com.ivan.passwordmanager.model.Site;
-import lombok.*;
-import org.springframework.format.annotation.DateTimeFormat;
-
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
+
+import com.ivan.passwordmanager.model.Group;
+
+import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @Setter

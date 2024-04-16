@@ -1,20 +1,20 @@
 package com.ivan.passwordmanager.service.impl;
 
+import java.util.List;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+
 import com.ivan.passwordmanager.dto.GroupDto;
 import com.ivan.passwordmanager.exeptions.NotFound;
 import com.ivan.passwordmanager.mappers.GroupMapper;
-import com.ivan.passwordmanager.model.Category;
 import com.ivan.passwordmanager.model.Group;
 import com.ivan.passwordmanager.model.User;
 import com.ivan.passwordmanager.repository.GroupRepository;
 import com.ivan.passwordmanager.repository.UserRepository;
 import com.ivan.passwordmanager.service.GroupService;
-import jakarta.persistence.Temporal;
-import jakarta.transaction.Transactional;
-import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Service;
 
-import java.util.List;
+import jakarta.transaction.Transactional;
 
 @Service
 public class GroupServiceImpl implements GroupService {

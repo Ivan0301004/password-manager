@@ -1,12 +1,12 @@
 package com.ivan.passwordmanager.service;
 
-import com.ivan.passwordmanager.dto.UserDto;
-import com.ivan.passwordmanager.model.User;
+import java.util.Map;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.util.Map;
-import java.util.Optional;
+import com.ivan.passwordmanager.dto.UserDto;
+import com.ivan.passwordmanager.model.User;
 
 public interface UserService {
 

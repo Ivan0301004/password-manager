@@ -1,10 +1,9 @@
 package com.ivan.passwordmanager.service;
 
+import java.util.List;
+
 import com.ivan.passwordmanager.dto.GroupDto;
 import com.ivan.passwordmanager.model.Group;
-import com.ivan.passwordmanager.model.Site;
-
-import java.util.List;
 
 public interface GroupService {
 
